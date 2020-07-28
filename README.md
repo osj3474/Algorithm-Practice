@@ -19,3 +19,17 @@
 ### 프로그래머스 SQL kit
 
 - https://programmers.co.kr/learn/challenges?tab=sql_practice_kit
+
+
+
+
+
+### 자료구조 복습 필요성
+
+복습할 것
+
+1. DFS
+2. BFS
+3. Heap
+4. DP
+5. Graph
