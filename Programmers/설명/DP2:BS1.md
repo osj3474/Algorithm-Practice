@@ -214,8 +214,6 @@ mygraph = {
 print(dijkstra(mygraph, 'A', 'F'))
 ```
 
-출처 : 패스트 캠퍼스
-
 
 
 ### [ 이해 해보기 ]
