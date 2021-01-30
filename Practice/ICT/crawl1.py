@@ -3,7 +3,7 @@ from bs4 import BeautifulSoup as bs
 import requests
 
 def baseCrawl():
-    disaster_result = requests.get("http://www.safekorea.go.kr/idsiSFK/neo/sfk/cs/sfc/dis/disasterMsgList.jsp?emgPage=Y&menuSeq=679")
+    disaster_result = requests.get("https://search.shopping.naver.com/search/all?query=lg%20tv&frm=NVSHATC&prevQuery=")
 
     disaster_soup = bs(disaster_result.text, "html.parser")
 
