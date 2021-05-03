@@ -1,22 +1,24 @@
-# problem
-N = 10
-pro_lst = [0,1,2,3,4,6,7,8,9]
+import math
 
-# # solution 1
-# entire_lst = [i for i in range(N)]
-# for i, value in enumerate(pro_lst):
-#     if i != value:
-#         print(value-1)
-#         break
+def my_func(N):
+    cnt = 0
+    while N!=0:
+        dist = int(math.sqrt(N))
+        N -= dist*dist
+        cnt += 1
+    return cnt
 
-# solution 2
-# miss = N-1
-# for i in range(miss):
-#     print('{}'.format(i))
-#     print(i, pro_lst[i])
-#     bit = i ^ pro_lst[i]
-#     print('bit : ', bit)
-#     miss ^= i ^ pro_lst[i]
-#     print('miss : ',miss)
-#     print()
-# print(miss)
+def answer_func(n):
+    d = [0]*(n+1)
+    for i in range(1, n+1):
+        d[i] = i
+        j = 1
+        while j*j <= i:
+            if d[i] > d[i-j*j]+1:
+                d[i] = d[i-j*j]+1
+            j += 1
+    return d[n]
+
+for i in range(1, 1000):
+    if my_func(i) != answer_func(i):
+        print(i)
