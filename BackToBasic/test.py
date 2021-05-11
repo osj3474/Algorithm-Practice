@@ -1,11 +1,30 @@
-N = int(input())
-d = [[10] + [1 for _ in range(10)]]
-d += [[0]*11 for _ in range(N-1)]
+n = int(input())
+A = list(map(int, input().split()))
 
-for i in range(1, N):
-    d[i][0] = d[i][1] = d[i-1][0]
-    for j in range(2, 11):
-        d[i][j] = d[i][j-1]-d[i-1][j-1]
-        d[i][0] += d[i][j]
+MAX = temp = A[0]
+out = None
+flag = True
+cnt = 0
+for i in range(1, len(A)):
+    if A[i]<0:
+        cnt += 1
+        if out:
+            if flag:
+                temp += A[out]
+            else:
+                temp = sum(A[out+1:i])
+        else:
+            if temp+A[i]<0:
+                flag =False
+        out = i
+        continue
+    if temp+A[i] < 0:
+        temp = 0
+        continue
+    temp += A[i]
+    MAX = max(MAX, temp)
 
-print(d[N-1][0] % 10007)
+if cnt == len(A):
+    print(min(A))
+else:
+    print(MAX)
