@@ -1,16 +1,36 @@
-E, S, M = map(int, input().split())
+N_str = input()
+M = int(input())
+A_set = set(map(int, input().split()))
+A_lst = list(set([i for i in range(10)]) - A_set)
+A_lst.sort()
 
-E_lst = [15]+[i for i in range(1, 15)]
-S_lst = [28]+[i for i in range(1, 28)]
-M_lst = [19]+[i for i in range(1, 19)]
+def find_nearest(n):
+    MIN = 10
+    ret = 0
+    for i in range(len(A_lst)):
+        temp = abs(A_lst[i]-n)
+        if MIN > temp:
+            MIN = temp
+            ret = A_lst[i]
+    return ret
 
-i, j, k, answer = 1, 1, 1, 1
+s_idx = 0
+num = ''
 
-while True:
-    if i==E and j==S and k==M: break
-    i = E_lst[(i+1)%15]
-    j = S_lst[(j+1)%28]
-    k = M_lst[(k+1)%19]
-    answer += 1
+if A_lst[0]==0:
+    MIN = 10
+    ret = 0
+    k = int(N_str[0])
+    for i in range(1, len(A_lst)):
+        temp = abs(A_lst[i]-k)
+        if MIN > temp:
+            MIN = temp
+            ret = A_lst[i]
+    num += str(ret)
+    s_idx = 1
 
-print(answer)
+for i in range(s_idx, len(N_str)):
+    num += str(find_nearest(int(N_str[i])))
+
+answer = len(N_str)+abs(int(N_str)-int(num))
+print(min(answer, abs(100-int(N_str))))
