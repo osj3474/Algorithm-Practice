@@ -34,3 +34,8 @@ for i in range(s_idx, len(N_str)):
 
 answer = len(N_str)+abs(int(N_str)-int(num))
 print(min(answer, abs(100-int(N_str))))
+
+# 와,,, 반례,,, 정말 생각지도 못한,,,
+#1555
+#8
+#0 1 3 4 5 6 7 9
