@@ -1,11 +1,6 @@
-def BFS(S, current, copy, cnt):
-    copyResult = current
-    pasteResult = current + copy
-    deleteResult = current - 1
-    if copyResult==S or pasteResult==S or deleteResult==S:
-        return cnt
-    BFS(S, copyResult, current, cnt+1)
-    BFS(S, pasteResult, copy, cnt + 1)
-    BFS(S, deleteResult, copy, cnt + 1)
+# 파이썬은 recursion depth가 작구나
+# 탐색은 반복문으로 가는걸로
+# DS : DFS는 Stack
+# BQ : BFS는 Queue
+# 추후 DP를 위한 memo 리스트도 넣자
 
-print(BFS(2, 1, 0, 1))
