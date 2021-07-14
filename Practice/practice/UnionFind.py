@@ -3,8 +3,8 @@ def Find(v, parent) :
     if parent[v] != v :
         parent[v] = Find(parent[v], parent)
     return parent[v]
-def Union(x, y, parent, rank) :
 
+def Union(x, y, parent, rank) :
     # if x ==1 and y == 0:
     #     print(parent)
     #     print(rank)
@@ -16,6 +16,7 @@ def Union(x, y, parent, rank) :
         parent[y] = x
         rank[x] += 1
     return parent, rank
+
 def solution(n, computers):
     parent = {}
     rank = {}
@@ -27,7 +28,6 @@ def solution(n, computers):
     for i in range(len(computers)) :
         for edge in range(len(computers[i])) :
             if computers[i][edge] == 1 and edge != i :
-
                 v1 = i
                 v2 = edge
                 # print("원본:", v1, v2)
