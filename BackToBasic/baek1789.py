@@ -1,9 +1,8 @@
 S = int(input())
 
 n = 1
-flag =True
 S2 = 2*S
-while flag:
+while 1:
     if n*n+n>S2: break
     n += 1
 
