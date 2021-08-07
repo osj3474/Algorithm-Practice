@@ -33,17 +33,3 @@
 #
 # print(cnt)
 
-
-N = int(input())
-dp = [0]*(N+1)
-dp[1] = 0
-
-for i in range(2, N+1):
-    lst = []
-    if i%3==0: lst.append(dp[i//3])
-    if i%2==0: lst.append(dp[i//2])
-    lst.append(dp[i-1])
-    dp[i]=min(lst)+1
-
-print(dp[N])
-
