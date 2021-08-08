@@ -33,15 +33,52 @@
 #
 # print(cnt)
 
-# dp[n] = n개 카드 구매 최대 비용
-# = max(dp[n-1]+p[1], dp[n-2]+p[2], ...)
+# 2616
+# from itertools import combinations as cb
+#
+# N = int(input())
+# car_lst = list(map(int, input().split()))
+# k = int(input())
+#
+# dp = [0]*(N-k)
+# dp[0] = sum(car_lst[:k])
+# for i in range(1, N-k):
+#     dp[i] = dp[i-1]-car_lst[i-1]+car_lst[i+k]
+#
+# lst = list(cb(dp, 3))
+# print(lst)
 
 N = int(input())
-dp = [[0]*2 for _ in range(N+1)]
-dp[1][0], dp[1][1] = 1, 1
+A_lst = list(map(int, input().split()))
 
-for i in range(2, N+1):
-    dp[i][0] = dp[i-1][0]+dp[i-1][1]
-    dp[i][1] = dp[i-1][0]
+dp = [[1,i] for i in range(N)]
+MAX = 0
+MAX_idx = 0
 
-print(sum(dp[N])-dp[N][0])
+for i in range(N):
+    temp = 0
+    flag = False
+    idx = i
+    for j in range(i):
+        if A_lst[i] > A_lst[j] and temp < dp[j][0]:
+            temp = dp[j][0]
+            idx = j
+            flag = True
+    if flag: dp[i] = [temp+1, idx]
+    if MAX < dp[i][0]:
+        MAX = dp[i][0]
+        MAX_idx = i
+
+value = 0
+visited_lst = []
+idx = MAX_idx
+while value != 1:
+    visited_lst.append(A_lst[idx])
+    value, idx = dp[idx]
+
+visited_lst.reverse()
+print(MAX)
+for visit in visited_lst:
+    print(visit, end=' ')
+
+
