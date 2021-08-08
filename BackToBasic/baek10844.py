@@ -19,12 +19,28 @@
 #         = d[i-1][j-1] + d[i-1][j+1]
 # 단, 0보다 1작은수, 9보다 1큰수는 제외해야한다.
 
-
+# 일단 첫째자리에 0이 올 수 있다고 가정하고 dp값을 채운다.
+# dp[i][j] = i자리 계단수 (이전 수 = j)  // 앞에서부터 채워 감
+# dp[i][j] = dp[i-1][j-1]+dp[i-1][j+1] // (0과 9만 다름)
+# 마지막에 0으로 시작하는 dp[n][0] 만 빼주면 됨.
 
 N = int(input())
-mod = 1000000000
-answer = 0
 
+def solution(N):
+    if N==1: return 9
+    dp = [[0]*10 for _ in range(N+1)]
+
+    for i in range(10):
+        dp[1][i]=1
+
+    for i in range(2, N+1):
+        dp[i][0] = dp[i-1][1]
+        dp[i][9] = dp[i-1][8]
+        for j in range(1, 9):
+            dp[i][j] = (dp[i-1][j-1]+dp[i-1][j+1])%1000000000
+    return (sum(dp[N])-dp[N][0])%1000000000
+
+print(solution(N))
 
 
 
