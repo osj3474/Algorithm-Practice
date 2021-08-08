@@ -6,6 +6,8 @@
 # D[n][2] = D[n-2][1] + D[n-2][3]
 # D[n][3] = D[n-3][1] + D[n-3][2]
 
+
+# dp[i][j] = i를 1,2,3의 합으로 나타내는 경우의 수, 마지막 사용한 수 j
 n = int(input())
 num_lst = [int(input()) for _ in range(n)]
 MAX = max(num_lst)
