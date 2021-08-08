@@ -48,3 +48,10 @@
 # lst = list(cb(dp, 3))
 # print(lst)
 
+N = int(input())
+t, p, dp = [0]*(N+1), [0]*(N+1), [0]*(N+1)
+for i in range(1, N+1):
+    t[i], p[i] = map(int ,input().split())
+
+for i in range(1, N+1):
+    for j in range(1, )
