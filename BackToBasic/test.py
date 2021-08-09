@@ -89,31 +89,107 @@
 #
 # print(MAX)
 
-N, K = map(int, input().split())
-w, v = [0]*N, [0]*N
-for i in range(N):
-    w[i], v[i] = map(int, input().split())
+# N = int(input())
+# board = [list(map(int, input().split())) for _ in range(N)]
+# dp = [[0]*N for _ in range(N)]
+# d = N-1
+#
+# global cnt
+# cnt = 0
+#
+# def go(i, j, visited):
+#     global cnt
+#     if (i, j) == (d, d):
+#         # dp 업뎃이 필요함
+#         print(1)
+#         for p1, p2 in visited:
+#             dp[p1][p2] += 1
+#         visited = []
+#         return
+#     if dp[i][j] != 0:
+#         cnt += dp[i][j]
+#     dx = [board[i][j], 0]
+#     dy = [0, board[i][j]]
+#     for p in range(2):
+#         x = i + dx[p]
+#         y = j + dy[p]
+#         if x>=0 and y>=0 and x<N and y<N:
+#             if board[x][y] == 0: continue
+#             visited.append((x, y))
+#             go(x, y, visited)
+#
+# go(0,0,[])
 
-# dp[i][j] = i번째 까지의 물건 안에서, 캐파가 j만큼 남았을 때의 최대 가치
-# 궁극적으로 원하는 건 = dp[N][K] 이다.
-# 생각은 l, m을 본다고 했을 때, 이전에 어떤 물건을 샀는지는 생각도 하지 않고,
-# 딱 그 순간 i번째 물건을 살지 안 살지만 결정하고,
-# 산다면, i를 제외하기 위해 i-=1 하고, 캐파도 w[i] 만큼해야한다.
-# 안산다 하더라도, i는 제외이고(i-=1), 캐파는 변동 없다.
-# 만약, 애초에 i번째 물건이 나의 모든 캐파를 가지고도 못 사는 거였다면,
-# 그냥 바로 윗칸 꺼(i번째 물건이 없다고 했을 때의 최대 가치이니까.)를 받자.
+# N = int(input())
+# board = [list(map(int, input().split())) for _ in range(N)]
+# dp = [[0]*N for _ in range(N)]
+# d = N-1
 
-dp = [[0]*(K+1) for _ in range(N)]
-for i in range(N):
-    for j in range(1, K+1):
-        # 기본적으로 캐파가 허락해줘야한다.
-        if j>=w[i]:
-            # 산다/안산다 는 더 높은 가치로 판단
-            # 비교는 바로 윗칸이다. 왜냐하면,
-            # 캐파가 늚으로써 물건 선택지가 바뀌었을 수도 있기 때문이다.
-            dp[i][j] = max(dp[i-1][j], dp[i-1][j-w[i]]+v[i])
+# need, visited = [], []
+# need.append((0, 0))
+# visited.append((0, 0))
+# while need:
+#     now = need.pop()
+#     i, j = now
+#     print(now)
+#     if (i, j) == (d, d):
+#         print(visited)
+#         for v1, v2 in visited:
+#             dp[v1][v2] += 1
+#         visited = []
+#         print(visited)
+#     if board[i][j] == 0: continue
+#     if dp[i][j] != 0:
+#         for v1, v2 in visited:
+#             dp[v1][v2] += 1
+#         visited = []
+#     dx = [board[i][j], 0]
+#     dy = [0, board[i][j]]
+#     for p in range(2):
+#         x = i + dx[p]
+#         y = j + dy[p]
+#         if x>=0 and y>=0 and x<N and y<N:
+#             need.append((x, y))
+#             visited.append((x, y))
+#
+# print(dp[d][d])
+
+# 다앙햔 풀이법이 있을 수 있겠지만,
+# 1x1 판일 때, (0,0) 으로 가는 경우의 수
+# 2x2 판일 때, (1,1) 로 가는 경우의 수
+# 3x3 판일 때, (2,2) 로 가는 경우의 수
+# 이런식으로 구하기 시작하면, 나중에, nxn 판일 때,
+# (n-1, n-1)로 가는 경우의 수를 구하는데, 이전꺼를 쓸 수 잇다.
+
+
+# N = int(input())
+# board = [list(map(int, input().split())) for _ in range(N)]
+# dp = [[0]*N for _ in range(N)]
+# d = N-1
+
+S = input().split()
+N = len(S)
+# my_dic = {'[]', '&', '*'}
+for i in range(1, N):
+    S[i] = S[i][:-1]
+    temp = ''
+    idx=0
+    # print(S[i])
+    j = len(S[i])-1
+    while j>0:
+        if S[i][j]=='&' or S[i][j]=='*':
+            temp+=S[i][j]
+            # print('{}라서 temp에 들어감. temp={}'.format(S[i][j], temp))
+            j-=1
+        elif S[i][j-1:j+1] == '[]':
+            temp+=S[i][j-1:j+1]
+            j-=2
+            # print('{}라서 temp에 들어감. temp={}'.format(S[i][j], temp))
+            # print('참고로 j={} 가 됐음.'.format(j))
         else:
-            dp[i][j] = dp[i-1][j]
+            # print('{}인 상태로 나감.'.format(idx))
+            break
 
-print(dp[N-1][K])
+    print(S[0]+temp, S[i][:j+1]+';')
+
 
