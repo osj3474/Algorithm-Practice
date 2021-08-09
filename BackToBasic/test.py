@@ -48,7 +48,7 @@
 # lst = list(cb(dp, 3))
 # print(lst)
 
-# dp[i][j] = 세로가 i인 우리에서 사자를 넣는 경우의 수
+# dp[i][j] = 세로가 i인 우리'[;p;;에서 사자를 넣는 경우의 수
 # j : 가장 최근 칸의 배치 종류
 # j가 0이면, 사자를 배치하지 않은 경우
 # j가 1이면, 사자가 왼쪽에 배치된 경우
@@ -60,3 +60,42 @@
 # mod = 9901
 # dp = [[0]*3 for _ in range(N+1)]
 
+# n = int(input())
+# fodo = [int(input()) for _ in range(n)]
+
+
+
+# global MAX
+# MAX = 0
+#
+# def drink(d, s, prev):
+#     global MAX
+#     if d==n-1:
+#         if MAX<s:
+#             print(prev)
+#             MAX=s
+#         return
+#     if d>n: return
+#     if len(prev)>=2:
+#         if d-1==prev[-2] and d-2==prev[-1]:
+#             drink(d+1, s, prev)
+#             return
+#     drink(d + 1, s, prev)
+#     prev.append(d)
+#     drink(d + 1, s + fodo[d], prev)
+#
+# # prev = list()
+# drink(0, 0, list())
+#
+# print(MAX)
+n=1
+while True:
+    if n*n+n>=2000:
+        break
+    n+=1
+t = [0]
+for i in range(1, n+1):
+    t.extend([i]*i)
+
+A, B = map(int, input().split())
+print(sum(t[A:B+1]))
