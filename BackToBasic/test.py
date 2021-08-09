@@ -161,35 +161,23 @@
 # 이런식으로 구하기 시작하면, 나중에, nxn 판일 때,
 # (n-1, n-1)로 가는 경우의 수를 구하는데, 이전꺼를 쓸 수 잇다.
 
-
 # N = int(input())
 # board = [list(map(int, input().split())) for _ in range(N)]
 # dp = [[0]*N for _ in range(N)]
 # d = N-1
 
-S = input().split()
-N = len(S)
-# my_dic = {'[]', '&', '*'}
-for i in range(1, N):
-    S[i] = S[i][:-1]
-    temp = ''
-    idx=0
-    # print(S[i])
-    j = len(S[i])-1
-    while j>0:
-        if S[i][j]=='&' or S[i][j]=='*':
-            temp+=S[i][j]
-            # print('{}라서 temp에 들어감. temp={}'.format(S[i][j], temp))
-            j-=1
-        elif S[i][j-1:j+1] == '[]':
-            temp+=S[i][j-1:j+1]
-            j-=2
-            # print('{}라서 temp에 들어감. temp={}'.format(S[i][j], temp))
-            # print('참고로 j={} 가 됐음.'.format(j))
-        else:
-            # print('{}인 상태로 나감.'.format(idx))
-            break
+# 15988
+n = int(input())
+lst = [int(input()) for _ in range(n)]
+mod = 1000000009
 
-    print(S[0]+temp, S[i][:j+1]+';')
+M = max(lst)
+dp = [0]*(M+1)
+dp[1] = 1
+dp[2] = 2
+dp[3] = 4
+for i in range(4, M+1):
+    dp[i] = (dp[i-1] + dp[i-2] + dp[i-3]) % mod
 
-
+for i in lst:
+    print(dp[i])
