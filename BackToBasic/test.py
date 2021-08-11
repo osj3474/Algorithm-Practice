@@ -166,18 +166,55 @@
 # dp = [[0]*N for _ in range(N)]
 # d = N-1
 
-# 15988
+
+# n = int(input())
+# A = list(map(int, input().split()))
+#
+# MAX = float('-inf')
+# temp, s = 0, 0
+# for i in range(n):
+#     if A[i] < 0:
+#         if i==0: pass
+#         else: s=i-1
+#         continue
+#     temp += A[i]
+#     if MAX < temp: MAX = temp
+#     # 힘을 못받을거면 새로 시작하는게 나음.
+#     if temp < 0: temp = 0
+#
+# i, s, p = 0, 0, 0
+# while i<n:
+#     if i==p: continue
+#
+#
+#
+#
+# print(MAX)
+
+my_dic = {'ADD':'0000', 'SUB':'0001', 'MOV':'0010',
+          'AND':'0011', 'OR':'0100', 'NOT':'0101', 'MULT':'0110',
+          'LSFTL':'0111', 'LSFTR':'1000', 'ASFTR':'1001',
+          'RL':'1010', 'RR':'1011'}
+
 n = int(input())
-lst = [int(input()) for _ in range(n)]
-mod = 1000000009
 
-M = max(lst)
-dp = [0]*(M+1)
-dp[1] = 1
-dp[2] = 2
-dp[3] = 4
-for i in range(4, M+1):
-    dp[i] = (dp[i-1] + dp[i-2] + dp[i-3]) % mod
+def fillZero(S, n):
+    return '0'*(n-len(S))+S
 
-for i in lst:
-    print(dp[i])
+for i in range(n):
+    command = input().split()
+    command = [command[0]]+list(map(lambda x: bin(int(x)), command[1:]))
+    op = ''
+    d, rA, BC = command[1][2:], command[2][2:], command[3][2:]
+    isConstant = False
+    if command[0][-1]=='C':
+        op = my_dic[command[0][:-1]]+'1'
+        isConstant = True
+    else: op = my_dic[command[0]]+'0'
+    d = fillZero(d, 3)
+    rA = fillZero(rA, 3)
+    if isConstant: BC = fillZero(BC, 4)
+    else:
+        BC = fillZero(BC, 3) + '0'
+    answer = op+'0'+d+rA+BC
+    print(answer)
