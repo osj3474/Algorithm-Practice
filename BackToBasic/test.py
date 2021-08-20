@@ -1,15 +1,7 @@
-import sys
-
-n, k = map(int, sys.stdin.readline().split())
-A = [int(sys.stdin.readline()) for _ in range(n)]
-
-d = [0]*(k+1)
-d[0] = 1
-length = len(A)
-
-for j in range(length):
-    for i in range(k+1):
-        if i<A[j]: continue
-        d[i] += d[i-A[j]]
-
-print(d[k])
+X, Y, W, S = map(int, input().split())
+if X < Y: X, Y = Y, X
+if (X+Y)%2==0:
+    MIN = X*S
+else:
+    MIN = (X-1)*S+W
+print(min(MIN, (X+Y)*W, (X-Y)*W+Y*S))
