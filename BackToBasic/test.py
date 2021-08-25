@@ -1,48 +1,35 @@
-N, M = map(int, input().split())
-board = [list(map(int, input().split())) for _ in range(N)]
+N, K = map(int, input().split())
+A = list(map(int, input().split()))
+belt = list(map(list, list(zip(A, [0]*len(A)))))
 
-p_lst = [
-    [[1,1,1,1]],
-    [[1],[1],[1],[1]],
+def go(lst):
+    return [lst[-1]]+lst[:-1]
 
-    [[1,1],[1,1]],
+n = N-1  # 내리는 위치
+cnt = 0  # 단계 카운트
 
-    [[1,0],[1,0],[1,1]],
-    [[1,1,1],[1,0,0]],
-    [[1,1],[0,1],[0,1]],
-    [[0,0,1],[1,1,1]],
-    [[0,1],[0,1],[1,1]],
-    [[1,0,0],[1,1,1]],
-    [[1,1],[1,0],[1,0]],
-    [[1,1,1],[0,0,1]],
+while K:
+    cnt += 1
+    # 1번
+    belt = go(belt)
+    if belt[n][1] == 1:
+        belt[n][1] = 0
 
-    [[1,0],[1,1],[0,1]],
-    [[0,1,1],[1,1,0]],
-    [[0,1],[1,1],[1,0]],
-    [[1,1,0],[0,1,1]],
+    # 2번
+    for i in range(n-1, -1, -1):
+        if belt[i][1] == 1:  # 로봇이 있으면
+            if belt[i+1][1] != 1 and belt[i+1][0] > 0: # 다음칸 이동 가능하면
+                belt[i][1] = 0     # 현재칸 로봇 빼고
+                belt[i+1][1] = 1   # 다음칸 로봇 넣고
+                belt[i+1][0] -= 1  # 다음칸 내구도 -1
+                if belt[i+1][0] == 0: K -= 1
+    if belt[n][1] == 1:
+        belt[n][1] = 0
 
-    [[1,1,1],[0,1,0]],
-    [[1,0],[1,1],[1,0]],
-    [[0,1,0],[1,1,1]],
-    [[0,1],[1,1],[0,1]]
-]
+    # 3번
+    if belt[0][1] != 1 and belt[0][0] > 0:
+        belt[0][1] = 1
+        belt[0][0] -= 1
+        if belt[0][0] == 0: K -= 1
 
-MAX = 0
-for x in range(N):
-    for y in range(M):
-        for p in p_lst:
-            n = len(p)
-            m = len(p[0])
-            cnt = 0
-            if x+n-1<N and y+m-1<M:  # 시작점 기준으로 가능한지 판단
-                # print('p={}, 시작점={},{}'.format(p, x, y))
-                for i in range(n):
-                    for j in range(m):
-                        if p[i][j]==0: continue
-                        cnt += board[x+i][y+j]
-                        # print('     cnt에 {}를 더했더니 {}가 됨.'.format(board[x+i][y+j], cnt))
-            if MAX < cnt:
-                # print('p={}, 시작점={},{}일때, MAX업뎃'.format(p, x, y))
-                MAX = cnt
-
-print(MAX)
+print(cnt)
