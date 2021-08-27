@@ -1,32 +1,17 @@
-N = str(input())
+# 16926
 
-lis = [i for i in range(10)]
-count = 1
-
-for cnt in range(len(N)):
-    if int(N[cnt]) in lis:
-        lis.remove(int(N[cnt]))
-    elif int(N[cnt]) == 6:
-        if 9 in lis:
-            lis.remove(9)
-        else:
-            count += 1
-            lis = [i for i in range(10)]
-            lis.remove(int(N[cnt]))
-    elif int(N[cnt]) == 9:
-        if 6 in lis:
-            lis.remove(6)
-        else:
-            count += 1
-            lis = [i for i in range(10)]
-            lis.remove(int(N[cnt]))
-    else:
-        count += 1
-        lis = [i for i in range(10)]
-        lis.remove(int(N[cnt]))
-print(count)
+def rotate(board, n):
+    temp = [[0]*n for _ in range(n)]
+    for x in range(n//2):
+        N = x+n-1
+        for i in range(1, n):
+            temp[i][x] = board[i-1][x]
+            temp[x][i] = board[N][i-1]
+            temp[i][N] = board[i+1][N]
+            temp[x][i] = board[x][i+1]
+        n-=2
+    return temp
 
 
-
-
-
+N, M, R = map(int, input().split())
+board = [[0]*M for _ in range(N)]
