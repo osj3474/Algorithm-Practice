@@ -10,7 +10,7 @@ from datetime import datetime, timedelta
 
 # 네이버 뉴스를 스크래핑하는 함수
 def test_naver():
-    words = get_words_from_file("input2.txt")
+    words = get_words_from_file("input.txt")
 
     NAVER_base_url = "https://search.naver.com/search.naver?sm=tab_hty.top&where=news&query=kt+{}&oquery=kt&tqi=hgb8pwprvxZssOWHicdssssstZw-523363&nso=so%3Ar%2Cp%3Aall&mynews=0&office_section_code=0&office_type=0&pd=7&photo=0&sort=0&start={}"
     selector = "div.news_wrap.api_ani_send > div.news_area"
@@ -41,7 +41,7 @@ def test_naver():
         print("< {} >".format(k))
         idx = 1
         for title, news_time, link in v:
-            print('({}) '.format(idx), news_time, title, link)
+            print('({}) {} | {} | {}'.format(idx, news_time, title, link))
             idx += 1
         print()
 
