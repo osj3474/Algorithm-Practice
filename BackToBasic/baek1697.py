@@ -1,19 +1,24 @@
 from collections import deque
 
 N, K = map(int, input().split())
-need = deque()
+visited = [0]*200001
+need, next_level, new_visited = deque(), list(), list()
 need.append(N)
 
-visited = list()
 cnt = 0
 while need:
-    if K in need: break
-    new = list()
-    for item in list(need):
-        n = need.popleft()
-        if n in visited: continue
-        visited.extend([n-1, n+1, n*2])
-        new.extend([n-1, n+1, n*2])
-    need = deque(new)
-    cnt += 1
+    now = need.popleft()
+    if now == K: break
+    new_visited.append(now)
+    for k in [now-1, now+1, now*2]:
+        if 1<=k<200001 and visited[k]==0:
+            next_level.append(k)
+    if not need:
+        need = deque(next_level)
+        for n in new_visited:
+            visited[n]=1
+        next_level.clear()
+        new_visited.clear()
+        cnt += 1
+
 print(cnt)
