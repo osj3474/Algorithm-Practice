@@ -23,19 +23,18 @@ print(len(cnt_set))
 
 
 ## 정답
-# n = int(input())
+# n,m = map(int,input().split())
 # a = list(map(int,input().split()))
-# c = [False]*(n*100000+10)
-# def go(i, sum):
+# ans = 0
+# def go(i, s):
+#     global ans
 #     if i == n:
-#         c[sum] = True
+#         if s == m:
+#             ans += 1
 #         return
-#     go(i+1,sum+a[i])
-#     go(i+1,sum)
-# go(0,0)
-# i = 1
-# while True:
-#     if c[i] == False:
-#         break
-#     i += 1
-# print(i)
+#     go(i+1,s+a[i])
+#     go(i+1,s)
+# go(0, 0)
+# if m == 0:
+#     ans -= 1
+# print(ans)
