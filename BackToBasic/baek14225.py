@@ -1,22 +1,22 @@
 N = int(input())
-a = list(map(int, input().split()))
+S = list(map(int, input().split()))
 
-c = [False]*100001
+c = [False]*10000001
 
-def go(i, total):
-    if i>=N: return
-
+def go(idx, total):
+    if idx==N: return
     c[total] = True
-    go(i+1, total)
+    go(idx + 1, total)
 
-    total += a[i]
+    total += S[idx]
     c[total] = True
-    go(i+1, total)
+    go(idx+1, total)
+
 
 for i in range(N):
     go(i, 0)
 
-for i in range(1, 100001):
-    if not c[i]: break
-
-print(i)
+for i in range(1, len(c)):
+    if c[i]==False:
+        print(i)
+        break
