@@ -104,6 +104,36 @@ System.out.println("30.00초");
    }
    ```
 
+   ```java
+   // main 밖에 이렇게 해두고
+   static int n, m;
+   static int[][] a;
+   static boolean[][] check;
+   static int[][] group;
+   
+   // 입력 이렇게 받기
+   BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
+   BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+   String[] st = bf.readLine().split(" ");  // 3 5 이런 입력 받은 거임.
+   
+   n = Integer.parseInt(st[0]);
+   m = Integer.parseInt(st[1]);
+   a = new int[n][m];             // 해당 사이즈의 2차원 array 만들기
+   
+   
+   
+   // 출력 이렇게 하기
+   bw.write(String.valueOf(ans%10));
+   ```
+
+   ```java
+   // valueOf() 함수는 >>> String 변환
+   
+   String a = String.valueOf(1, "135", true, ...);  // 어떤 형이든 String으로 바꿈
+   
+   ```
+
+   
    
 
 4. 형 변환
@@ -126,6 +156,9 @@ System.out.println("30.00초");
    
    a = Integer.parseInt(b); // str -> int
    b = Integer.toString(a); // int -> str
+   
+   String S = "nowic";
+   System.out.println(S.charAt(2));   // w출력
    ```
 
    
@@ -135,13 +168,34 @@ System.out.println("30.00초");
    [python]
 
    ```python
+   from collections import defaultdict
    
+   map = defaultdict();
+   map[x] += 1;
    ```
 
    [java]
 
    ```java
+   HashMap<Integer, Integer> map = new HashMap<>();
    
+   if (map.containsKey(x)) {
+     int temp = map.get(x);
+     map.put(x, temp+1);
+   } else {
+     map.put(x, 1);
+   }
+   
+   
+   for (Entry<Integer, Integer> e : map.entrySet()) {
+     v.add(new Pair(e.getKey(), e.getValue()));
+   }
+   
+   
+   
+   // 새로운
+   map.computeIfPresent(1, (key, value) -> ++value);
+   map.putIfAbsent(1, 1);
    ```
 
    
@@ -161,22 +215,135 @@ System.out.println("30.00초");
    ```
 
    [java]
+   
+   ```java
+   HashSet<Integer> s = new HashSet<>();
+   
+   s.add(1);
+   ```
+   
+   
 
 
 
 
 
+7. stack, queue
+
+   [python]
+
+   ```python
+   from collections import deque
+   
+   # ====== stack ====== #
+   s = []       
+   s.append(1)
+   s.pop()
+   
+   # ====== deque ====== #
+   q = deque()
+   q.append(1)
+   q.popleft()
+   ```
+
+   [java]
+
+   ```java
+   import java.util.*
+   
+   // ====== stack ====== //
+   Stack<Integer> s = new Stack<>();
+   s.push(1);
+   s.pop();
+   s.peek();
+   s.size();
+   s.empty();
+   
+     
+     
+   // ====== deque ====== //
+   Queue<Integer> q = new LinkedList<Integer>();
+   q.add(1);
+   q.remove();
+   q.isEmpty();
+   
+   ArrayDeque<Integer> q = new ArrayDeque<Integer>();
+   q.add(1);
+   q.poll();
+   q.addFirst(next);
+   q.addLast(next);
+   q.isEmpty();
+   ```
+
+   
+
+8. 반복문
+
+   [python]
+
+   ```python
+   for num in [n+1, n+2, n+3]:
+     print(num)
+   ```
+
+   
+
+   [java]
+
+   ```java
+   for (int num : new int[]{n+1, n+2, n+3}){
+     System.out.println(num);
+   }
+   ```
+
+   
+
+
+
+9. List
+
+   [python]
+
+   ```python
+   
+   ```
+
+   
+
+   [java]
+
+   ```java
+   ArrayList<Integer> first = new ArrayList<>();
+   
+   ```
+
+   
 
 
 
 
 
+10. null 체크
+
+    ```java
+    // null 체크
+    String ck = String.valueOf(something);
+    if("null".equals(ck)) {
+        
+    }
+    ```
+
+    
 
 
 
+11. dfs / bfs 관용
 
+    ```java
+    final static int[] dx = {0,0,1,-1};
+    final static int[] dy = {1,-1,0,0};
+    ```
 
+    
 
-
-
-
+12. 
