@@ -135,7 +135,6 @@ System.out.println("30.00초");
 
    
    
-
 4. 형 변환
 
    [python]
@@ -186,7 +185,7 @@ System.out.println("30.00초");
      map.put(x, 1);
    }
    
-   
+   import java.util.Map.Entry;
    for (Entry<Integer, Integer> e : map.entrySet()) {
      v.add(new Pair(e.getKey(), e.getValue()));
    }
