@@ -1,6 +1,6 @@
 import java.util.*;
 
-class Solution_l2 {
+class Codility_l2 {
     public int solution(int[] A) {
         // 1차 방법
 

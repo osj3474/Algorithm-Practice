@@ -158,6 +158,7 @@ System.out.println("30.00초");
    
    String S = "nowic";
    System.out.println(S.charAt(2));   // w출력
+   S.charAt(1)+"" // char -> str
    ```
 
    
@@ -216,7 +217,7 @@ System.out.println("30.00초");
    [java]
    
    ```java
-   HashSet<Integer> s = new HashSet<>();
+   HashSet<Integer> s = new HashSet<>();  // or Set<Integer> set = new HashSet<Integer>();
    
    s.add(1);
    ```
@@ -314,8 +315,15 @@ System.out.println("30.00초");
    ```java
    ArrayList<Integer> first = new ArrayList<>();
    
+   
+   
    ```
-
+   
+   ```java
+   // 배열 출력
+   System.out.println(Arrays.toString(arr));
+   ```
+   
    
 
 
@@ -346,3 +354,13 @@ System.out.println("30.00초");
     
 
 12. 
+
+
+
+
+
+
+
+
+
+cf) 자바 int => 4byte => 32bit => 양수/음수 표현 => 2^31 => 0중복 => 2^31-1
