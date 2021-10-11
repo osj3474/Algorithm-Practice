@@ -196,8 +196,17 @@ System.out.println("30.00초");
    // 새로운
    map.computeIfPresent(1, (key, value) -> ++value);
    map.putIfAbsent(1, 1);
+   
+   
+   HashMap<Integer, ArrayList<Integer>> map = new HashMap<>();
+   for(int i=0; i<A.length; i++){
+     if(! map.containsKey(A[i])){
+       map.put(A[i], new ArrayList());
+     }
+     map.get(A[i]).add(i);
+   }
    ```
-
+   
    
 
 
@@ -257,7 +266,8 @@ System.out.println("30.00초");
    s.pop();
    s.peek();
    s.size();
-   s.empty();
+   s.empty();    // 비우기
+   s.isEmpty();  // 비었는지 확인
    
      
      
@@ -305,16 +315,16 @@ System.out.println("30.00초");
    [python]
 
    ```python
-   
+   final DevEvent devEvent = devEventQueryRepository.findDevEventById(id)
+                   .orElseThrow(() -> new DevEventNotFoundException(ErrorCode.DEV_EVENT_NOT_FOUND));
    ```
-
    
-
+   
+   
    [java]
-
+   
    ```java
    ArrayList<Integer> first = new ArrayList<>();
-   
    
    
    ```
@@ -353,7 +363,14 @@ System.out.println("30.00초");
 
     
 
-12. 
+12. 초기화
+
+    ```java
+    boolean[] ck = new boolean[30]; // 기본 false임.
+    Arrays.fill(ck, true);          // true로 초기화
+    ```
+
+    
 
 
 
