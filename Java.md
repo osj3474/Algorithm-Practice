@@ -5,9 +5,32 @@
 Scanner sc = new Scanner(System.in);  // ("4.80초")
 // EOF까지 입력받기 (입력이 주어지지 않은 경우)
 // while(sc.hasNextInt())
+sc.next();     // 한 단어 (String)
+sc.nextline(); // 한 줄   (String)
+sc.nextInt();  // 한 숫자 (Integer)
 
-// 입력 (많은 경우)
+// 입력 (많은 경우)  이거 쓰게 되면, (throws IOException) 필요
 BufferedReader br = new BufferedReader(new InputStreamReader(System.in)); // ("0.65초")
+br.close(); // main 끝나기 전에 해주기
+
+
+// (한 줄에) 숫자 1개
+int N = Integer.parseInt(br.readLine());  // (String만 가능) + int형 반환
+int N = Integer.valueOf(bf.readLine());   // (String, Integer 가능) + Integer형 반환
+
+// (한 줄에) 숫자 2개 이상
+String[] nums = br.readLine().split(" ");
+
+// 혹은
+StringTokenizer st; 
+st = new StringTokenizer(br.readLine());
+while(st.countTokens()!=0){
+  System.out.println(Integer.parseInt(st.nextToken()));
+}
+
+// tokenize
+StringTokenizer st;
+st = new StringTokenizer(br.readLine());
 ```
 
 
@@ -22,7 +45,17 @@ System.out.println("30.00초");
 
 // 출력 (많은 경우)
 // BufferedWriter ("0.95초");
+BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+bw.close(); // main 끝나기 전에 해주기
+
 // StringBuilder  ("1.18초");
+StringBuilder sb = new StringBuilder();
+
+
+// [조합]
+sb.append(answer + "\n");  // 이렇게 쓰고
+bw.write(sb.toString());   // 한꺼번에 넣고
+bw.close();                // 종료해주고
 ```
 
 
@@ -271,17 +304,37 @@ System.out.println("30.00초");
    
      
      
-   // ====== deque ====== //
+   // ====== queue ====== //
    Queue<Integer> q = new LinkedList<Integer>();
+   // [넣기]
    q.add(1);
-   q.remove();
+   // [꺼내기]
+   q.peek();    // 맨 위 값 보기
+   q.poll();    // 꺼냄 (없으면 null)
+   q.remove();  // 꺼냄 (없으면 에러!)
+   q.clear();   // 초기화
+   // [속성]
+   q.size();
    q.isEmpty();
+   q.contains(1); // 값이 있는지 확인
    
+   
+   // ====== deque ====== //
    ArrayDeque<Integer> q = new ArrayDeque<Integer>();
-   q.add(1);
-   q.poll();
-   q.addFirst(next);
-   q.addLast(next);
+   // [넣기]
+   q.add(1);    // (원래 방향) 넣기
+   q.push(2);   // (반대 방향) 넣기
+   // [꺼내기]
+   q.peek();      // (원래 방향) 맨 위 값 보기
+   q.pop();       // (원래 방향) 꺼냄 (없으면 null)
+   q.poll();      // (원래 방향) 꺼냄 (없으면 null)
+   q.remove();    // (원래 방향) 꺼냄 (없으면 에러!)
+   
+   q.peekLast();  // (원래 방향) 맨 위 값 보기
+   q.pollLast();  // (반대 방향) 꺼냄 (없으면 null)
+   
+   q.clear();   // 초기화
+   // [속성]
    q.isEmpty();
    ```
 
@@ -372,7 +425,21 @@ System.out.println("30.00초");
 
     
 
+13. 클래스
 
+    (노드나 이런걸로 분명 쓰임.)
+
+    ```java
+    class Pair {
+        int x, y;
+        Pair(int x, int y) {
+            this.x = x;
+            this.y = y;
+        }
+    }
+    ```
+
+    
 
 
 
