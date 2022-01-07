@@ -1,13 +1,13 @@
-N = int(input())
-time_lst = [0]*N
+# from itertools import combinations_with_replacement as cr
+#
+# N = int(input())
+# words = [1, 5, 10, 50]
+# ck = [False] * (50*N+1)
+#
+# case_lst = cr(words, N)
+# for case in case_lst:
+#     ck[sum(case)] = True
+#
+# print(ck.count(True))
 
-for i in range(N):
-    t, n, *a = map(int, input().split())
-
-    _max = 0
-    for idx in a:
-        if _max < time_lst[idx-1]:
-            _max = time_lst[idx-1]
-    time_lst[i] = _max + t
-
-print(max(time_lst))
+# https://jinho-study.tistory.com/1039 이렇게 푸는게 맞는듯.
