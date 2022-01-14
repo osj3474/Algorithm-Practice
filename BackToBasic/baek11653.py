@@ -4,12 +4,10 @@ _max = 10000000
 answer = []
 i = 2
 while i<_max:
+    if N == 1: break
     if N%i == 0:
         N//=i
         answer.append(i)
-
-        if N==1: break
-
         continue
     i += 1
 
