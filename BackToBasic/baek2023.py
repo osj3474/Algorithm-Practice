@@ -7,7 +7,7 @@
 
 N = int(input())
 heads = ['2', '3', '5', '7']
-tails = ['1', '3', '7', '9']
+tails = ['1', '3', '5', '7', '9']
 
 def isPrime(n):
     if n==1: return False
